@@ -16,6 +16,26 @@ router.post('/', withAuth, async (req, res) => {
   }
 });
 
+// Update an existing post with authenticated user
+router.put("/:id", withAuth, async (req, res) => {
+  try {
+    console.log("*****************blogroutes put/:" + JSON.stringify(req.body));
+    console.log("*****************blogroutes put/id:", req.params.id);
+    const updatedPost = await Blog.update(req.body, {
+      where: { id: req.params.id },
+    });
+
+    if (!updatedPost) {
+      res.status(404).json({ message: "No post found with that id!" });
+      return;
+    }
+    res.status(200).json(updatedPost);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+
 router.delete('/:id', withAuth, async (req, res) => {
   try {
     console.log("*****************blogroutes delete id:" + req.params.id);

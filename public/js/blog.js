@@ -28,6 +28,42 @@ const newCommentHandler = async (event) => {
   }
 };
 
+const updateBlogHandler = async (event) => {
+  console.log("*****************blog.js inside update blog listener:");
+  event.preventDefault();
+  console.log(document.querySelector('#update-blog-id'))
+  const description = document.querySelector('#update-blog-id').value.trim();
+  let inputElement = document.querySelector('.blog-input');
+  let id = inputElement.getAttribute('data-updateblogid');
+
+//***************************************************** 
+//if (title && content) {
+//  const response = await fetch(`/api/posts/${post_id}`, {
+//    method: "PUT",
+//    body: JSON.stringify({ title, content }),
+//    headers: { "Content-Type": "application/json" },
+//  });
+  //****************************************** */
+
+  if (description && id) {
+    console.log("*****************blog.js update blog desc:", description);
+    console.log("*****************blog.js update blogId:", id);
+    const response = await fetch(`/api/blogs/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify({ description}),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (response.ok) {
+      document.location.replace('/profile');
+    } else {
+      alert('Failed to update blog');
+    }
+  }
+};
+
 const delButtonHandler = async (event) => {
   if (event.target.hasAttribute('data-id')) {
     const id = event.target.getAttribute('data-id');
@@ -53,12 +89,22 @@ document.addEventListener('DOMContentLoaded', (event) => {
   console.log("*****************New comment form:", newCommentForm);
 
   if (newCommentForm) {
-    console.log("*****************comments.js start new comment listener:");
+    console.log("*****************blogs.js start new comment listener:");
     newCommentForm.addEventListener('submit', newCommentHandler);
+  } 
+});
+
+document.addEventListener('DOMContentLoaded', (event) => {
+  const updateBlogForm = document.querySelector('.update-blog-form');
+  
+  console.log("*****************update blog form:", updateBlogForm);
+
+  if (updateBlogForm) {
+    console.log("*****************blogs.js start update blog listener:");
+    updateBlogForm.addEventListener('submit', updateBlogHandler);
   }
 
 });
-
 
 
 
