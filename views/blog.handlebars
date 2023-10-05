@@ -1,10 +1,35 @@
 <div class="text-center">
   <h2>{{name}}</h2>
   <p>{{{get_emoji}}}</p>
+  
   <p>{{description}}</p>
   <p>Created by {{user.name}} on {{format_date date_created}}</p>
 
-  <p>
-    <button class="btn btn-primary">Add a Comment</button>
-  </p>
+   
+  {{#if comments.length}}
+    {{#each comments as |comment|}}
+    <div class="dish col-md-5">
+
+     <p>Blog id: {{comment.blog_id}}</p>
+      <p>
+        <input type="text" id="comment-id-{{comment.id}}" value="{{comment.comment}}" />
+      </p>
+    </div>
+    {{/each}}
+  {{/if}}
+    <form class="form new-comment-form">
+      <div class="form-group">
+        <p>Blog id: {{id}}</p>
+        <label for="new-comment-id">Add new Comment:</label>
+        <input class= "comment-input" type="text" id="new-comment-id" data-blogid={{id}}>
+        <!--<input class= "comment-input" type="text" id="new-comment-id" />-->
+      </div>
+       <div>
+        <button class="btn btn-primary">Add a Comment</button>
+      </div>
+    </form>
+
+
 </div>
+
+<script src="../js/comment.js"></script> 

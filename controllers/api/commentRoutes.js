@@ -1,16 +1,15 @@
 const router = require('express').Router();
-const { Blog } = require('../../models');
+const { Comment } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 router.post('/', withAuth, async (req, res) => {
   try {
-    console.log("*****************blogroutes /:" + JSON.stringify(req.body));
-    const newBlog = await Blog.create({
+    console.log("*****************commentRoutes /:" + JSON.stringify(req.body));
+    const newComment = await Comment.create({
       ...req.body,
-      user_id: req.session.user_id,
     });
 
-    res.status(200).json(newBlog);
+    res.status(200).json(newComment);
   } catch (err) {
     res.status(400).json(err);
   }
@@ -18,10 +17,10 @@ router.post('/', withAuth, async (req, res) => {
 
 router.delete('/:id', withAuth, async (req, res) => {
   try {
-    console.log("*****************blogroutes delete id:" + req.params.id);
+    console.log("*****************commentroutes delete id:" + req.params.id);
     
-    console.log("*****************blogroutes delete user_id:" + req.session.user_id);
-    const blogData = await Blog.destroy({
+    console.log("*****************commentroutes delete user_id:" + req.session.user_id);
+    const commentData = await Comment.destroy({
       where: {
         id: req.params.id,
         user_id: req.session.user_id,

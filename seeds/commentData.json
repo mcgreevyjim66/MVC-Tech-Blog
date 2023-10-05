@@ -1,14 +1,16 @@
 [
   {
-    "comment": "comment for blog 1"
+    "comment": "comment for blog 1",
+    "blog_id": 1
 
   },
   {
-    "comment": "comment for blog 2"
-
+    "comment": "comment for blog 2",
+    "blog_id": 2
   },
   {
-    "comment": "comment for blog 3"
+    "comment": "comment for blog 3",
+    "blog_id": 1
 
   }
 

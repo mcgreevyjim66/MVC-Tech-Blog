@@ -37,10 +37,15 @@ router.get('/blog/:id', async (req, res) => {
           model: User,
           attributes: ['name'],
         },
+        {
+          model: Comment,
+          attributes: ['blog_id', 'comment'],
+        },
       ],
     });
 
     const blog = blogData.get({ plain: true });
+    console.log("*************************************homeroutes.js /blog:id blogData", blog)
 
     res.render('blog', {
       ...blog,
