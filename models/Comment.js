@@ -16,6 +16,15 @@ Comment.init(
     comment: {
       type: DataTypes.STRING
      },
+     comment_created_by: {
+      type: DataTypes.STRING,
+      allowNull: false,
+     },
+     date_comment_created: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: DataTypes.NOW,
+    },
      blog_id: {
       type: DataTypes.INTEGER,
       references: {

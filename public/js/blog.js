@@ -6,22 +6,26 @@ const newCommentHandler = async (event) => {
   //const blogId = document.querySelector('#blog-id').value.trim();
   let inputElement = document.querySelector('.comment-input');
   let blog_id = inputElement.getAttribute('data-blogid');
+  let comment_created_by = "octo"
+
 
   if (comment) {
-    console.log("*****************comment.js add commentText:", comment);
-    console.log("*****************comment.js add blogId:", blog_id);
+    console.log("*****************blog.js add commentText:", comment);
+    console.log("*****************blog.js add blogId:", blog_id);
     const response = await fetch(`/api/comments`, {
       method: 'POST',
       //body: JSON.stringify({ commentText, blogId }),
       //body: JSON.stringify({ comment}),
-      body: JSON.stringify({ comment,  blog_id}),
+      body: JSON.stringify({ comment,  comment_created_by, blog_id}),
+      //body: JSON.stringify({ comment,  comment_created_by, blog_id}),
       headers: {
         'Content-Type': 'application/json',
       },
     });
 
     if (response.ok) {
-      document.location.replace('/profile');
+      //document.location.replace('/blogs');
+      document.location.reload();
     } else {
       alert('Failed to create comment');
     }
@@ -57,7 +61,8 @@ const updateBlogHandler = async (event) => {
     });
 
     if (response.ok) {
-      document.location.replace('/profile');
+     // document.location.replace('/dashboard');
+     document.location.reload();
     } else {
       alert('Failed to update blog');
     }
@@ -75,7 +80,7 @@ const delButtonHandler = async (event) => {
     });
 
     if (response.ok) {
-      document.location.replace('/profile');
+      document.location.replace('/dashboard');
     } else {
       alert('Failed to delete comment');
     }

@@ -16,7 +16,7 @@ const newFormHandler = async (event) => {
     });
 
     if (response.ok) {
-      document.location.replace('/profile');
+      document.location.replace('/dashboard');
     } else {
       alert('Failed to create blog');
     }
@@ -34,7 +34,7 @@ const delButtonHandler = async (event) => {
     });
 
     if (response.ok) {
-      document.location.replace('/profile');
+      document.location.replace('/dashboard');
     } else {
       alert('Failed to delete project');
     }
@@ -60,17 +60,3 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 
 
-
-//document.addEventListener('DOMContentLoaded', (event) => {
-//  document.querySelector('.new-project-form').addEventListener('submit', newFormHandler);
-//  document.querySelector('.project-list').addEventListener('click', delButtonHandler);
-//});
-
-
-//document
-//  .querySelector('.new-project-form')
-//  .addEventListener('submit', newFormHandler);
-
-//document
-//  .querySelector('.project-list')
-//  .addEventListener('click', delButtonHandler);

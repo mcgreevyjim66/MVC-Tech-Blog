@@ -7,27 +7,30 @@
         <label for="update-blog-id">Update Blog:</label>
         <input class= "blog-input" type="text" id="update-blog-id" value = "{{description}}" data-updateblogid={{id}} >
       </div>
+        <p>Created by {{user.name}} on {{format_date date_created}}</p>
        <div>
         <button class="btn btn-primary">Update Blog</button>
       </div>
     </form>
 
 
-  <!--<p>{{description}}</p> -->
-  <p>Created by {{user.name}} on {{format_date date_created}}</p>
 
-   
-  {{#if comments.length}}
-    {{#each comments as |comment|}}
-    <div class="dish col-md-5">
+    <form class="form comment-form">
+    <div class="form-group">
+        {{#if comments.length}}
+          {{#each comments as |comment|}}
+          <div class="dish col-md-5">
 
-     <p>Blog id: {{comment.blog_id}}</p>
-      <p>
-        <input type="text" id="comment-id-{{comment.id}}" value="{{comment.comment}}" />
-      </p>
+            <p>Blog id: {{comment.blog_id}}</p>
+            <p>
+              <input type="text" id="comment-id-{{comment.id}}" value="{{comment.comment}}" />
+            </p>
+          </div>
+          {{/each}}
+        {{/if}}
     </div>
-    {{/each}}
-  {{/if}}
+    </form>
+
     <form class="form new-comment-form">
       <div class="form-group">
         <p>Blog id: {{id}}</p>
@@ -43,4 +46,4 @@
 
 </div>
 
-<script src="../js/blog.js"></script> 
+<script src="/js/blog.js"></script> 

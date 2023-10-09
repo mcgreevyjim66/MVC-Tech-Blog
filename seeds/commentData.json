@@ -1,16 +1,22 @@
 [
   {
     "comment": "comment for blog 1",
+    "comment_created_by": "Sal",
+    "date_comment_created": "April 20, 2021 07:00:00",
     "blog_id": 1
 
   },
   {
     "comment": "comment for blog 2",
+    "comment_created_by": "Lernantino",
+    "date_comment_created": "April 20, 2022 07:00:00",
     "blog_id": 2
   },
   {
     "comment": "comment for blog 3",
-    "blog_id": 1
+    "comment_created_by": "Amiko",
+    "date_comment_created": "April 20, 2023 07:00:00",
+    "blog_id": 3
 
   }
 

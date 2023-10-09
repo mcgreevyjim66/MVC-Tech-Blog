@@ -3,7 +3,7 @@ const { User, Blog, Comment } = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
-  console.log("*************************************homeroutes.js /" + req)
+  console.log("*************************************homeroutes.js / " + req)
   try {
     // Get all projects and JOIN with user data
     const blogData = await Blog.findAll({
@@ -28,7 +28,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/blog/:id', async (req, res) => {
+router.get('/blog/:id', withAuth, async (req, res) => {
   console.log("*************************************homeroutes.js /blog:id" + req)
   try {
     const blogData = await Blog.findByPk(req.params.id, {
@@ -39,7 +39,7 @@ router.get('/blog/:id', async (req, res) => {
         },
         {
           model: Comment,
-          attributes: ['blog_id', 'comment'],
+          attributes: ['blog_id', 'comment', 'comment_created_by', 'date_comment_created'],
         },
       ],
     });
@@ -57,8 +57,8 @@ router.get('/blog/:id', async (req, res) => {
 });
 
 // Use withAuth middleware to prevent access to route
-router.get('/profile', withAuth, async (req, res) => {
-  console.log("*************************************homeroutes.js /profile" + req)
+router.get('/dashboard', withAuth, async (req, res) => {
+  console.log("*************************************homeroutes.js /dashboard" + req)
   try {
     // Find the logged in user based on the session ID
     const userData = await User.findByPk(req.session.user_id, {
@@ -68,7 +68,7 @@ router.get('/profile', withAuth, async (req, res) => {
 
     const user = userData.get({ plain: true });
 
-    res.render('profile', {
+    res.render('dashboard', {
       ...user,
       logged_in: true
     });
@@ -81,7 +81,7 @@ router.get('/login', (req, res) => {
   // If the user is already logged in, redirect the request to another route
   console.log("*************************************homeroutes.js /login" + req)
   if (req.session.logged_in) {
-    res.redirect('/profile');
+    res.redirect('/dashboard');
     return;
   }
 
