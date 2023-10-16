@@ -51,7 +51,11 @@ THEN I am able to view posts and comments but I am prompted to log in again befo
 ```
 ## Usage
 
-To access this application, please run launch it at https://watch.screencastify.com/v/Ia2XregeiVfm5TcJjuVN
+To access this application's dyno , please see it at https://git.heroku.com/still-tundra-71312.git
+
+To access this application , please launch it at https://still-tundra-71312-f75073fb60b0.herokuapp.com/
+
+
 
 ## Source
 
