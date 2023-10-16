@@ -56,6 +56,36 @@ router.get('/blog/:id', withAuth, async (req, res) => {
   }
 });
 
+router.get('/blogout/:id', async (req, res) => {
+  console.log("*************************************homeroutes.js /blogout:id" + req)
+  try {
+    const blogData = await Blog.findByPk(req.params.id, {
+      include: [
+        {
+          model: User,
+          attributes: ['name'],
+        },
+        {
+          model: Comment,
+          attributes: ['blog_id', 'comment', 'comment_created_by', 'date_comment_created'],
+        },
+      ],
+    });
+
+    const blog = blogData.get({ plain: true });
+    console.log("*************************************homeroutes.js /blog:id blogData", blog)
+
+    res.render('blog', {
+      ...blog,
+      logged_in: req.session.logged_in
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+
+
 // Use withAuth middleware to prevent access to route
 router.get('/dashboard', withAuth, async (req, res) => {
   console.log("*************************************homeroutes.js /dashboard" + req)
@@ -75,6 +105,15 @@ router.get('/dashboard', withAuth, async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
   }
+});
+
+//render the new post page
+router.get("/newpost", (req, res) => {
+  if (req.session.logged_in) {
+    res.render("newpost");
+    return;
+  }
+  res.redirect("/login");
 });
 
 router.get('/login', (req, res) => {

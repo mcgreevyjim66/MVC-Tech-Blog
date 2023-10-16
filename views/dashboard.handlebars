@@ -6,6 +6,7 @@
 
 <div class="row mt-4">
   <div class="col-md-6">
+    {{#if logged_in}}
     <h3>Create a Blog:</h3>
 
     <form class="form new-blog-form">
@@ -14,7 +15,7 @@
         <input class="form-input" type="text" id="blog-name" name="blog-name" />
       </div>
       <div class="form-group">
-        <label for="blog-desc">description:</label>
+        <label for="blog-desc">Blog Content:</label>
         <textarea class="form-input" id="blog-desc" name="blog-desc"></textarea>
       </div>
       <div class="form-group">
@@ -22,7 +23,8 @@
       </div>
     </form>
   </div>
-
+  {{/if}}
+  
   {{#if blogs.length}}
   <div class="col-md-6 blog-list">
     <h3>Current Blogs:</h3>

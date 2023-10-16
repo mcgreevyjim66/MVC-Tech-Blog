@@ -5,7 +5,11 @@
     <h2>
       <!-- Call helper function with triple brackets to render the emoji span as HTML -->
       {{{get_emoji}}}
+      {{#if logged_in}}
       <a href="/blog/{{blog.id}}">{{blog.name}}</a>
+      {{else}}
+      <a href="/blogout/{{blog.id}}">{{blog.name}}</a>
+      {{/if}}
     </h2>
 
     <p>Created by {{blog.user.name}} on {{format_date blog.date_created}}</p>

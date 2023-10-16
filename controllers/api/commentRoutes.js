@@ -2,12 +2,16 @@ const router = require('express').Router();
 const { Comment } = require('../../models');
 const withAuth = require('../../utils/auth');
 
-router.post('/', withAuth, async (req, res) => {
+router.post('/', async (req, res) => {
   try {
     console.log("*****************commentRoutes /:" + JSON.stringify(req.body));
-    const newComment = await Comment.create({
-      ...req.body,
-    });
+    let createdByUser = req.session.user_name
+    if (!createdByUser) { createdByUser = "ANONYMOUS" };
+    console.log("********************** commentroutes.js createdByUser: ", createdByUser)
+    const commentData = {...req.body, comment_created_by : createdByUser}
+    const newComment = await Comment.create(
+      commentData
+    );
 
     res.status(200).json(newComment);
   } catch (err) {
@@ -15,7 +19,7 @@ router.post('/', withAuth, async (req, res) => {
   }
 });
 
-router.delete('/:id', withAuth, async (req, res) => {
+router.delete('/:id', async (req, res) => {
   try {
     console.log("*****************commentroutes delete id:" + req.params.id);
     
