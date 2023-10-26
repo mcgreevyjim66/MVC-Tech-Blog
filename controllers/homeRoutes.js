@@ -73,11 +73,18 @@ router.get('/blogout/:id', async (req, res) => {
     });
 
     const blog = blogData.get({ plain: true });
+
+    let same_user = false;
+    
+    if (blog.user.name === req.session.user_name){
+      same_user = true
+    }
     console.log("*************************************homeroutes.js /blog:id blogData", blog)
 
     res.render('blog', {
       ...blog,
-      logged_in: req.session.logged_in
+      logged_in: req.session.logged_in,
+      same_user: same_user
     });
   } catch (err) {
     res.status(500).json(err);

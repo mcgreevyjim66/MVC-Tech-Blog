@@ -41,7 +41,7 @@ const signupFormHandler = async (event) => {
     if (response.ok) {
       document.location.replace('/dashboard');
     } else {
-      alert(response.statusText);
+      alert(response.statusText + ": Please make sure your password contains at least eight characters with both alpha and numeric characters");
     }
   }
 };

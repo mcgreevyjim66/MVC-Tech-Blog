@@ -62,6 +62,10 @@ To access this application , please launch it at https://still-tundra-71312-f750
 My repo, is located at <https://github.com/mcgreevyjim66/MVC-Tech-Blog>.
 There is source code located in the MVC-Tech_Blog folder.
 
+## Mock-up
+
+![The MVC-Blog screen shot.](./assets/MVC-blog.PNG)
+
 ## Credits
 
 Author: Jim McGreevy

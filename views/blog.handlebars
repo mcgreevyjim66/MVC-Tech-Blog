@@ -8,11 +8,14 @@
         <input class= "blog-input" type="text" id="update-blog-id" value = "{{description}}" data-updateblogid={{id}} >
       </div>
         <p>Created by {{user.name}} on {{format_date date_created}}</p>
+
       {{#if logged_in}}
-       <div>
-        <button class="update-blog-button btn btn-primary">Update Blog</button>
-        <button class="delete-blog btn btn-sm btn-danger" data-id="{{id}}">DELETE</button>
-      </div>
+        {{#if same_user}}
+          <div>
+           <button class="update-blog-button btn btn-primary">Update Blog</button>
+           <button class="delete-blog btn btn-sm btn-danger" data-id="{{id}}">DELETE</button>
+          </div>
+        {{/if}}
       {{/if}}
 
 
