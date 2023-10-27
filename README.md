@@ -51,9 +51,9 @@ THEN I am able to view posts and comments but I am prompted to log in again befo
 ```
 ## Usage
 
-To access this application's dyno , please see it at https://git.heroku.com/still-tundra-71312.git
+To access this application's dyno , please see it at  https://git.heroku.com/pacific-escarpment-55402.git
 
-To access this application , please launch it at https://still-tundra-71312-f75073fb60b0.herokuapp.com/
+To access this application , please launch it at https://pacific-escarpment-55402-30144698a2f2.herokuapp.com/
 
 
 
